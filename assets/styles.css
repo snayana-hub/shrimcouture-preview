@@ -1,16 +1,18 @@
 :root{
-  --ivory:#F2E7D5; --paper:#FDF8EF; --ink:#221C1A; --muted:#6C625C;
-  --wine:#6B1220; --gold:#C29B40; --line:#E9DFCE;
+  --ivory:#F7F3E7; --paper:#FFFCF5; --ink:#221C1A; --muted:#6C625C;
+  --wine:#6B1220; --gold:#C29B40; --line:#E7DFCC;
   --serif:"Cormorant Garamond", Georgia, serif;
   --display:"Cinzel", "Cormorant Garamond", Georgia, serif;
   --sans:"Jost", "Helvetica Neue", Arial, sans-serif;
 }
 *{box-sizing:border-box}
 body{margin:0;overflow-x:hidden;background-color:var(--ivory);
-  background-image:radial-gradient(1200px 600px at 12% -8%, rgba(255,252,246,.85), rgba(255,252,246,0) 60%),
-    radial-gradient(900px 500px at 92% 4%, rgba(255,250,240,.7), rgba(255,250,240,0) 62%),
-    repeating-linear-gradient(0deg, rgba(140,110,70,.035) 0 1px, rgba(0,0,0,0) 1px 4px);
-  background-attachment:fixed;color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23f)' opacity='0.09'/%3E%3C/svg%3E"),
+    radial-gradient(1100px 620px at 15% -10%, rgba(255,255,252,.9), rgba(255,255,252,0) 62%),
+    radial-gradient(900px 520px at 90% 2%, rgba(255,253,246,.75), rgba(255,253,246,0) 64%);
+  background-repeat:repeat,no-repeat,no-repeat;
+  background-attachment:scroll,fixed,fixed;
+  color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
@@ -29,7 +31,7 @@ h3{font-size:20px}
 
 /* announcement + header */
 .ann{background:var(--wine);color:#F6E9D8;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;text-align:center;padding:9px 16px}
-header.site{position:sticky;top:0;z-index:40;background:rgba(245,236,222,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
+header.site{position:sticky;top:0;z-index:40;background:rgba(247,243,231,.95);border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
 .bar{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 0}
 .brand{display:flex;align-items:center;gap:12px;line-height:1}
 .lotus{width:40px;height:40px;flex:0 0 40px}
@@ -45,7 +47,7 @@ select#cur-select{font-family:var(--sans);font-size:11px;letter-spacing:.14em;pa
 .nav-toggle{display:none;background:none;border:0;font-size:20px;cursor:pointer;color:var(--ink)}
 
 /* hero */
-.hero{position:relative;min-height:min(78vh,620px);display:flex;align-items:center;background:#EFE7DA;overflow:hidden}
+.hero{position:relative;min-height:min(78vh,620px);display:flex;align-items:center;background:#EDE4D3;overflow:hidden}
 .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero .veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(24,16,14,.72) 0%,rgba(24,16,14,.42) 45%,rgba(24,16,14,.05) 100%)}
 .hero .inner{position:relative;color:#FDF7EE;max-width:560px;padding:70px 0}
@@ -139,7 +141,7 @@ footer.site li{padding:5px 0}
   .strip .grid3{grid-template-columns:1fr;gap:26px}
   footer.site .cols{grid-template-columns:1fr 1fr}
   .nav-toggle{display:block}
-  .nav-links{display:none;position:absolute;left:0;right:0;top:100%;background:#F5ECDE;border-bottom:1px solid var(--line);
+  .nav-links{display:none;position:absolute;left:0;right:0;top:100%;background:#F7F3E7;border-bottom:1px solid var(--line);
     flex-direction:column;gap:0;padding:8px 24px 18px}
   .nav-links.open{display:flex}
   .nav-links a{padding:11px 0;border-bottom:1px solid var(--line)}
@@ -190,3 +192,10 @@ footer.site li{padding:5px 0}
   .saleband{padding:44px 0}
   .saleband .inner{padding:30px 18px}
 }
+
+/* editorial cell in the product grid (PALLAVI-style) */
+.edcell{background:var(--paper);border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;
+  text-align:center;padding:34px 26px}
+.edcell h3{font-family:var(--serif);font-size:26px;margin-bottom:4px}
+.edcell .rule{margin:14px auto}
+.edcell p{font-size:13.5px;color:var(--muted);margin:0}
