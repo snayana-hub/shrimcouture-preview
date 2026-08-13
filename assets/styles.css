@@ -142,7 +142,7 @@ footer.site li{padding:5px 0}
   .lotus{width:32px;height:32px;flex:0 0 32px}
   .tagline{font-size:7px;letter-spacing:.36em}
   section{padding:52px 0}
-  .hero .inner{padding:56px 0}
+  .hero .inner{padding:56px 18px}
   .hero .veil{background:linear-gradient(90deg,rgba(24,16,14,.78) 0%,rgba(24,16,14,.55) 100%)}
   .wordmark{font-size:14px;letter-spacing:.12em;padding-bottom:3px}
   .lotus{width:26px;height:26px;flex:0 0 26px}
