@@ -6,7 +6,7 @@
   --sans:"Jost", "Helvetica Neue", Arial, sans-serif;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--ivory);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+body{margin:0;overflow-x:hidden;background:var(--ivory);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
@@ -144,4 +144,15 @@ footer.site li{padding:5px 0}
   section{padding:52px 0}
   .hero .inner{padding:56px 0}
   .hero .veil{background:linear-gradient(90deg,rgba(24,16,14,.78) 0%,rgba(24,16,14,.55) 100%)}
+  .wordmark{font-size:14px;letter-spacing:.12em;padding-bottom:3px}
+  .lotus{width:26px;height:26px;flex:0 0 26px}
+  .brand{gap:8px}
+  .tagline{display:none}
+  .ann{font-size:9px;letter-spacing:.08em;padding:7px 12px}
+  .tools{gap:9px;font-size:10.5px;letter-spacing:.08em}
+  select#cur-select{font-size:10px;padding:4px 4px;letter-spacing:.06em}
+  .nav-toggle{font-size:18px}
+  .wrap{padding:0 18px}
+  .hero .inner{max-width:100%}
+
 }
