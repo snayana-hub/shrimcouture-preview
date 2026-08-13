@@ -40,7 +40,13 @@ document.getElementById("filters").innerHTML = cats.map(function(c){
 }).join("");
 function render(){
   var list = active==="all" ? window.SC_PRODUCTS : (active==="sale" ? window.SC_PRODUCTS.filter(function(p){ return !!p.sale; }) : window.SC_PRODUCTS.filter(function(p){ return p.cat===active; }));
-  document.getElementById("grid").innerHTML = list.map(scCard).join("");
+  var cells = list.map(scCard);
+  var ed = '<div class="edcell"><p class="eyebrow">Chosen by hand</p><h3>' +
+    (active==="sale" ? "The festive edit" : "A small collection") + '</h3><div class="rule"></div>' +
+    '<p>We buy in short runs from weaving families we know, so the collection stays small and every piece is picked in person. ' +
+    'Each listing carries its weave, its cluster and how to keep it.</p></div>';
+  if (cells.length >= 3) { cells.splice(2, 0, ed); }
+  document.getElementById("grid").innerHTML = cells.join("");
   var t = cats.filter(function(c){ return c.id===active; })[0];
   document.getElementById("shop-title").textContent = active==="all" ? "Shop all" : t.name;
   var sn = document.getElementById("shop-note");
