@@ -7,6 +7,13 @@ function scPrice(inr){
   var v = Math.round(inr * x.r);
   return x.s + v.toLocaleString(c === "INR" ? "en-IN" : "en-US");
 }
+function scSalePrice(p){ return p.sale ? Math.round(p.price * (100 - p.sale) / 100) : p.price; }
+function scPriceBlock(p){
+  if (!p.sale) return '<p class="price">' + scPrice(p.price) + '</p>';
+  return '<p class="price">' + scPrice(scSalePrice(p)) +
+    ' <span class="was">' + scPrice(p.price) + '</span>' +
+    ' <span class="off">' + p.sale + '% off</span></p>';
+}
 function scCart(){ try { return JSON.parse(localStorage.getItem("sc_cart")) || []; } catch(e){ return []; } }
 function scSaveCart(c){ localStorage.setItem("sc_cart", JSON.stringify(c)); scBadge(); }
 function scAdd(id, size, qty){
@@ -23,9 +30,10 @@ function scBadge(){
 function scFind(id){ return window.SC_PRODUCTS.filter(function(p){ return p.id===id; })[0]; }
 function scCard(p){
   return '<a class="card" href="product.html?id=' + p.id + '">' +
-    '<div class="card-img"><img loading="lazy" src="' + p.img + '" alt="' + p.name + '"></div>' +
+    '<div class="card-img">' + (p.sale ? '<span class="tag">Sale</span>' : '') +
+    '<img loading="lazy" src="' + p.img + '" alt="' + p.name + '"></div>' +
     '<div class="card-body"><h3>' + p.name + '</h3><p class="muted">' + p.blurb + '</p>' +
-    '<p class="price">' + scPrice(p.price) + '</p></div></a>';
+    scPriceBlock(p) + '</div></a>';
 }
 function scMountHeader(){
   var cur = scCur();
