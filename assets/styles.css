@@ -217,8 +217,7 @@ footer.site li{padding:5px 0}
 footer.site{position:relative;background-color:#241B19;background-image:none}
 footer.site>.wrap{position:relative;z-index:1}
 .strip{position:relative;overflow:hidden;background-color:var(--paper);
-  background-image:var(--lotus-wm-gold),var(--lotus-wm-gold);
-  background-size:112px 112px,112px 112px;background-position:0 0,56px 56px}
+  background-image:none}
 .strip>.wrap{position:relative;z-index:1}
 
 .story{position:relative}
