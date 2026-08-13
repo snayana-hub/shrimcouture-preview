@@ -1,0 +1,70 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css"><title>Shrimcouture</title></head><body><body><div class="ann">Complimentary shipping across India &nbsp;&middot;&nbsp; Worldwide delivery to 40+ countries &nbsp;&middot;&nbsp; Made to measure available</div>
+<header class="site"><div class="wrap bar">
+<button class="nav-toggle" aria-label="Menu">&#9776;</button>
+<a class="brand" href="index.html">Shrimcouture<small>Handwoven &middot; India</small></a>
+<nav class="nav-links">
+<a href="shop.html">Shop All</a><a href="shop.html?cat=sarees">Sarees</a><a href="shop.html?cat=lehengas">Bridal</a><a href="shop.html?cat=suits">Suit Sets</a><a href="about.html">Our Story</a>
+</nav>
+<div class="tools">
+<select id="cur-select" aria-label="Currency"><option value="INR">INR &#8377;</option><option value="USD">USD $</option><option value="EUR">EUR &#8364;</option><option value="GBP">GBP &#163;</option></select>
+<a href="cart.html">Cart <span class="cart-count"></span></a>
+</div></div></header>
+<section><div class="wrap"><div class="pdp" id="pdp"></div>
+<div style="margin-top:80px"><div class="section-head"><p class="eyebrow">You may also like</p><h2>More from the collection</h2><div class="rule"></div></div>
+<div class="grid" id="more"></div></div>
+</div></section>
+<footer class="site"><div class="wrap"><div class="cols">
+<div><div class="fbrand">Shrimcouture</div>
+<p class="muted" style="color:#B9AB9C;max-width:280px">Handwoven sarees and Indian wear, sourced from weaving clusters across India and shipped worldwide.</p>
+<p><span class="badge">Placeholder wordmark</span></p></div>
+<div><h4>Shop</h4><ul><li><a href="shop.html?cat=sarees">Sarees</a></li><li><a href="shop.html?cat=lehengas">Bridal &amp; Lehengas</a></li><li><a href="shop.html?cat=suits">Kurta &amp; Suit Sets</a></li><li><a href="shop.html?cat=menswear">Menswear</a></li><li><a href="shop.html?cat=accessories">Accessories</a></li></ul></div>
+<div><h4>Help</h4><ul><li><a href="about.html">Our Story</a></li><li><a href="about.html#shipping">Shipping &amp; Duties</a></li><li><a href="about.html#returns">Returns</a></li><li><a href="about.html#care">Fabric Care</a></li><li><a href="about.html#contact">Contact</a></li></ul></div>
+<div><h4>Stay in touch</h4><p class="muted" style="color:#B9AB9C">New arrivals and atelier notes, once a month.</p>
+<form onsubmit="event.preventDefault();this.querySelector(\x27button\x27).textContent=\x27Thank you\x27;">
+<input class="field" type="email" placeholder="Email address" required style="background:#2F2421;border-color:#3B2E2A;color:#F4E9D9">
+<button class="btn" type="submit">Subscribe</button></form></div>
+</div>
+<div class="legal"><span>&copy; 2026 Shrimcouture. All rights reserved.</span><span>Preview build &middot; placeholder photography and indicative pricing</span></div>
+</div></footer>
+<script src="assets/data.js"></script><script src="assets/app.js"></script>
+<script>
+var id = new URLSearchParams(location.search).get("id") || window.SC_PRODUCTS[0].id;
+var p = scFind(id) || window.SC_PRODUCTS[0];
+document.title = p.name + " | Shrimcouture";
+var sizes = p.cat==="sarees" ? ["One size","Blouse: stitched to measure"] : (p.cat==="accessories" ? ["One size"] : ["XS","S","M","L","XL","XXL","Made to measure"]);
+var chosen = sizes[0], qty = 1;
+document.getElementById("pdp").innerHTML =
+ '<div class="shot"><img src="' + p.img + '" alt="' + p.name + '"></div>' +
+ '<div><p class="eyebrow">' + (p.cat==="lehengas" ? "Bridal" : p.cat) + '</p>' +
+ '<h1 style="font-size:38px">' + p.name + '</h1>' +
+ '<p class="price" style="font-size:26px" id="pprice"></p>' +
+ '<p class="muted">' + p.blurb + '</p>' +
+ '<p class="eyebrow" style="margin-top:26px">Size</p><div class="sizes" id="sizes"></div>' +
+ '<div class="qty"><button id="minus">-</button><span id="q">1</span><button id="plus">+</button></div>' +
+ '<button class="btn" id="add">Add to cart</button>' +
+ '<ul class="spec">' + p.detail.map(function(d){ return "<li>" + d + "</li>"; }).join("") +
+ '<li>Ships worldwide - free within India, 5-8 days express internationally</li></ul>' +
+ '<p class="note">Prices are indicative and shown in your selected currency. Import duties for international orders are shown at checkout.</p></div>';
+document.getElementById("pprice").textContent = scPrice(p.price);
+function drawSizes(){
+  document.getElementById("sizes").innerHTML = sizes.map(function(s){
+    return '<button class="size' + (s===chosen?" active":"") + '" data-s="' + s + '">' + s + '</button>';
+  }).join("");
+  document.querySelectorAll(".size").forEach(function(b){
+    b.addEventListener("click", function(){ chosen = this.dataset.s; drawSizes(); });
+  });
+}
+drawSizes();
+document.getElementById("plus").onclick = function(){ qty++; document.getElementById("q").textContent = qty; };
+document.getElementById("minus").onclick = function(){ if (qty>1) qty--; document.getElementById("q").textContent = qty; };
+document.getElementById("add").onclick = function(){
+  scAdd(p.id, chosen, qty);
+  this.textContent = "Added to cart";
+  var self = this;
+  setTimeout(function(){ self.textContent = "Add to cart"; }, 1800);
+};
+document.getElementById("more").innerHTML = window.SC_PRODUCTS.filter(function(x){ return x.id!==p.id; }).slice(0,4).map(scCard).join("");
+</script></body></html>
